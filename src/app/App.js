@@ -3,6 +3,7 @@ import './App.css';
 import Cards from './components/Cards/Cards.js';
 import initializeFirebase from './components/firebaseRequests/initialize.js';
 import getCards from './components/firebaseRequests/cards.js';
+import Form from './components/Form/Form.js';
 
 class App extends Component {
   state = {
@@ -22,6 +23,7 @@ class App extends Component {
     return (
       <div>
         <Cards firebaseCards={this.state.cards}/>
+        <Form />
       </div>
     );
   }
