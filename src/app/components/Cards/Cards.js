@@ -6,7 +6,7 @@ class Cards extends Component {
     const cardsArray = this.props.firebaseCards;
     const cardsToPrint = cardsArray.map((item) => {
       return (
-        <div className='col-sm-4'>
+        <div key={item.id} className='col-sm-4'>
           <img className='img-responsive' src={item.imgUrl} alt='stupid required alt tag'/>
           <h2>{item.name}</h2>
           <p>{item.description}</p>
