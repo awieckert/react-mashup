@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Cards from './components/Cards/Cards.js';
+import initializeFirebase from './components/firebaseRequests/initialize.js';
+import getCards from './components/firebaseRequests/cards.js';
 
 class App extends Component {
+  state = {
+    cards: [],
+  }
+
+  componentDidMount () {
+    initializeFirebase();
+    getCards().then((cardsArray) => {
+      this.setState({cards: cardsArray});
+    }).catch((err) => {
+      console.error('Failed to get firebase Cards: ', err);
+    });
+  }
+
   render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Cards firebaseCards={this.state.cards}/>
       </div>
     );
   }
